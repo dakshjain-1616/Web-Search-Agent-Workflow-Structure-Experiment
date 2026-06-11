@@ -1,0 +1,397 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+
+    <!-- Rainbow top bar gradient -->
+    <linearGradient id="rainbowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <!-- Left panel gradient (purple) -->
+    <linearGradient id="leftPanelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d1b69"/>
+      <stop offset="100%" stop-color="#1a1033"/>
+    </linearGradient>
+
+    <!-- Right panel gradient (amber) -->
+    <linearGradient id="rightPanelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#1c1005"/>
+    </linearGradient>
+
+    <!-- Center panel gradient -->
+    <linearGradient id="centerPanelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0a0e1a"/>
+    </linearGradient>
+
+    <!-- Purple score glow -->
+    <filter id="purpleGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="#7c3aed" flood-opacity="0.7" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Amber score glow -->
+    <filter id="amberGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="#f59e0b" flood-opacity="0.7" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle glow for tiles -->
+    <filter id="tileGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Dot pattern background texture -->
+    <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#ffffff" fill-opacity="0.03"/>
+    </pattern>
+
+    <!-- Badge gradient -->
+    <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <!-- Quote box gradient -->
+    <linearGradient id="quoteGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1e1040"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1040"/>
+    </linearGradient>
+
+    <!-- Header separator gradient -->
+    <linearGradient id="sepGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#7c3aed"/>
+      <stop offset="70%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="780" fill="url(#bgGrad)"/>
+  <!-- Dot texture overlay -->
+  <rect width="1200" height="780" fill="url(#dots)"/>
+
+  <!-- Rainbow top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#rainbowGrad)"/>
+
+  <!-- ===================== HEADER ===================== -->
+
+  <!-- EXPERIMENT #1 badge (top right) -->
+  <rect x="1020" y="10" width="160" height="26" rx="13" fill="url(#badgeGrad)" opacity="0.9"/>
+  <text x="1100" y="27" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle" letter-spacing="1.5">EXPERIMENT #1</text>
+
+  <!-- Title -->
+  <text x="600" y="38" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-0.5">18 Defects. Same Model. Two Workflows.</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="60" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">Claude Code solo vs Claude Code + Neo MCP — broken 46-line web search agent</text>
+
+  <!-- Header separator line -->
+  <line x1="0" y1="80" x2="1200" y2="80" stroke="url(#sepGrad)" stroke-width="1" opacity="0.6"/>
+
+  <!-- ===================== LEFT PANEL (Run A) ===================== -->
+  <rect x="20" y="90" width="240" height="520" rx="12" fill="url(#leftPanelGrad)" stroke="#7c3aed" stroke-width="1.5" stroke-opacity="0.7"/>
+  <!-- Top accent strip -->
+  <rect x="20" y="90" width="240" height="4" rx="2" fill="#7c3aed" opacity="0.9"/>
+
+  <!-- Run A label -->
+  <text x="140" y="122" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="#a78bfa" text-anchor="middle" letter-spacing="2">RUN A</text>
+
+  <!-- Claude Code Solo subtitle -->
+  <text x="140" y="142" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#c4b5fd" text-anchor="middle">Claude Code Solo</text>
+
+  <!-- Big score "13" with glow -->
+  <text x="120" y="240" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="90" font-weight="800" fill="#a78bfa" text-anchor="middle" filter="url(#purpleGlow)">13</text>
+
+  <!-- /18 -->
+  <text x="185" y="238" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#6d28d9" text-anchor="middle">/18</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="260" x2="240" y2="260" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Stats breakdown -->
+  <!-- FIXED -->
+  <rect x="35" y="272" width="6" height="18" rx="3" fill="#10b981"/>
+  <text x="50" y="286" font-family="'Courier New', Courier, monospace" font-size="11" fill="#94a3b8" letter-spacing="1">FIXED</text>
+  <text x="238" y="286" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="700" fill="#10b981" text-anchor="end">13</text>
+
+  <!-- PARTIAL -->
+  <rect x="35" y="300" width="6" height="18" rx="3" fill="#f59e0b"/>
+  <text x="50" y="314" font-family="'Courier New', Courier, monospace" font-size="11" fill="#94a3b8" letter-spacing="1">PARTIAL</text>
+  <text x="238" y="314" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="700" fill="#f59e0b" text-anchor="end">2</text>
+
+  <!-- MISSED -->
+  <rect x="35" y="328" width="6" height="18" rx="3" fill="#ef4444"/>
+  <text x="50" y="342" font-family="'Courier New', Courier, monospace" font-size="11" fill="#94a3b8" letter-spacing="1">MISSED</text>
+  <text x="238" y="342" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="700" fill="#ef4444" text-anchor="end">3</text>
+
+  <!-- Divider 2 -->
+  <line x1="40" y1="362" x2="240" y2="362" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Missed label -->
+  <text x="35" y="383" font-family="'Courier New', Courier, monospace" font-size="10" fill="#94a3b8" letter-spacing="1">MISSED:</text>
+  <text x="35" y="401" font-family="'Courier New', Courier, monospace" font-size="13" font-weight="700" fill="#f87171">D7 · D8 · D15</text>
+
+  <!-- Unique wins label -->
+  <text x="35" y="432" font-family="'Courier New', Courier, monospace" font-size="10" fill="#94a3b8" letter-spacing="1">UNIQUE WINS:</text>
+  <text x="35" y="450" font-family="'Courier New', Courier, monospace" font-size="13" font-weight="700" fill="#a78bfa">D11, D12, D18</text>
+
+  <!-- Bottom note -->
+  <text x="35" y="490" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#7c3aed" font-style="italic">13 fixed</text>
+  <text x="80" y="490" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#4c1d95" font-style="italic"> · 2 partial · 3 missed</text>
+
+  <!-- ===================== CENTER PANEL ===================== -->
+  <rect x="275" y="90" width="650" height="520" rx="12" fill="url(#centerPanelGrad)" stroke="#1e3a5f" stroke-width="1" stroke-opacity="0.8"/>
+
+  <!-- DEFECT GRID label -->
+  <text x="600" y="118" font-family="'Courier New', Courier, monospace" font-size="12" font-weight="700" fill="#64748b" text-anchor="middle" letter-spacing="3">DEFECT GRID</text>
+
+  <!-- ===== GRID TILES ===== -->
+  <!-- Row 1: D1(green), D2(green), D3(green), D4(green), D5(green), D6(amber) -->
+  <!-- Grid starts x=310, y=130, tiles 60x60, gap 8 -->
+
+  <!-- D1 - green (Both fixed) -->
+  <rect x="310" y="130" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="340" y="157" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D1</text>
+  <circle cx="340" cy="170" r="4" fill="#10b981"/>
+
+  <!-- D2 - green -->
+  <rect x="378" y="130" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="408" y="157" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D2</text>
+  <circle cx="408" cy="170" r="4" fill="#10b981"/>
+
+  <!-- D3 - green -->
+  <rect x="446" y="130" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="476" y="157" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D3</text>
+  <circle cx="476" cy="170" r="4" fill="#10b981"/>
+
+  <!-- D4 - green -->
+  <rect x="514" y="130" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="544" y="157" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D4</text>
+  <circle cx="544" cy="170" r="4" fill="#10b981"/>
+
+  <!-- D5 - green -->
+  <rect x="582" y="130" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="612" y="157" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D5</text>
+  <circle cx="612" cy="170" r="4" fill="#10b981"/>
+
+  <!-- D6 - amber (Run B only) -->
+  <rect x="650" y="130" width="60" height="60" rx="8" fill="#d97706" fill-opacity="0.18" stroke="#d97706" stroke-width="1.5"/>
+  <text x="680" y="157" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D6</text>
+  <circle cx="680" cy="170" r="4" fill="#d97706"/>
+
+  <!-- Row 2: D7(amber), D8(amber), D9(green), D10(green), D11(purple), D12(purple) -->
+
+  <!-- D7 - amber -->
+  <rect x="310" y="198" width="60" height="60" rx="8" fill="#d97706" fill-opacity="0.18" stroke="#d97706" stroke-width="1.5"/>
+  <text x="340" y="225" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D7</text>
+  <circle cx="340" cy="238" r="4" fill="#d97706"/>
+
+  <!-- D8 - amber -->
+  <rect x="378" y="198" width="60" height="60" rx="8" fill="#d97706" fill-opacity="0.18" stroke="#d97706" stroke-width="1.5"/>
+  <text x="408" y="225" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D8</text>
+  <circle cx="408" cy="238" r="4" fill="#d97706"/>
+
+  <!-- D9 - green -->
+  <rect x="446" y="198" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="476" y="225" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D9</text>
+  <circle cx="476" cy="238" r="4" fill="#10b981"/>
+
+  <!-- D10 - green -->
+  <rect x="514" y="198" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="544" y="225" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D10</text>
+  <circle cx="544" cy="238" r="4" fill="#10b981"/>
+
+  <!-- D11 - purple (Run A only) -->
+  <rect x="582" y="198" width="60" height="60" rx="8" fill="#7c3aed" fill-opacity="0.25" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="612" y="225" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D11</text>
+  <circle cx="612" cy="238" r="4" fill="#a78bfa"/>
+
+  <!-- D12 - purple -->
+  <rect x="650" y="198" width="60" height="60" rx="8" fill="#7c3aed" fill-opacity="0.25" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="680" y="225" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D12</text>
+  <circle cx="680" cy="238" r="4" fill="#a78bfa"/>
+
+  <!-- Row 3: D13(amber), D14(amber), D15(amber), D16(green), D17(green), D18(purple) -->
+
+  <!-- D13 - amber -->
+  <rect x="310" y="266" width="60" height="60" rx="8" fill="#d97706" fill-opacity="0.18" stroke="#d97706" stroke-width="1.5"/>
+  <text x="340" y="293" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D13</text>
+  <circle cx="340" cy="306" r="4" fill="#d97706"/>
+
+  <!-- D14 - amber -->
+  <rect x="378" y="266" width="60" height="60" rx="8" fill="#d97706" fill-opacity="0.18" stroke="#d97706" stroke-width="1.5"/>
+  <text x="408" y="293" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D14</text>
+  <circle cx="408" cy="306" r="4" fill="#d97706"/>
+
+  <!-- D15 - amber -->
+  <rect x="446" y="266" width="60" height="60" rx="8" fill="#d97706" fill-opacity="0.18" stroke="#d97706" stroke-width="1.5"/>
+  <text x="476" y="293" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D15</text>
+  <circle cx="476" cy="306" r="4" fill="#d97706"/>
+
+  <!-- D16 - green -->
+  <rect x="514" y="266" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="544" y="293" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D16</text>
+  <circle cx="544" cy="306" r="4" fill="#10b981"/>
+
+  <!-- D17 - green -->
+  <rect x="582" y="266" width="60" height="60" rx="8" fill="#10b981" fill-opacity="0.18" stroke="#10b981" stroke-width="1.5"/>
+  <text x="612" y="293" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D17</text>
+  <circle cx="612" cy="306" r="4" fill="#10b981"/>
+
+  <!-- D18 - purple -->
+  <rect x="650" y="266" width="60" height="60" rx="8" fill="#7c3aed" fill-opacity="0.25" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="680" y="293" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="white" text-anchor="middle">D18</text>
+  <circle cx="680" cy="306" r="4" fill="#a78bfa"/>
+
+  <!-- Comparison bar section below grid -->
+  <line x1="295" y1="345" x2="915" y2="345" stroke="#1e3a5f" stroke-width="1" stroke-opacity="0.7"/>
+
+  <!-- Score comparison visual bars -->
+  <text x="600" y="372" font-family="'Courier New', Courier, monospace" font-size="10" fill="#475569" text-anchor="middle" letter-spacing="2">SCORE COMPARISON</text>
+
+  <!-- Run A bar -->
+  <text x="310" y="392" font-family="'Courier New', Courier, monospace" font-size="10" fill="#a78bfa">A</text>
+  <rect x="325" y="380" width="390" height="14" rx="7" fill="#1e1040"/>
+  <rect x="325" y="380" width="325" height="14" rx="7" fill="#7c3aed" fill-opacity="0.7"/>
+  <text x="660" y="392" font-family="'Courier New', Courier, monospace" font-size="10" fill="#a78bfa">13/18</text>
+
+  <!-- Run B bar -->
+  <text x="310" y="416" font-family="'Courier New', Courier, monospace" font-size="10" fill="#fbbf24">B</text>
+  <rect x="325" y="404" width="390" height="14" rx="7" fill="#1c1005"/>
+  <rect x="325" y="404" width="375" height="14" rx="7" fill="#d97706" fill-opacity="0.7"/>
+  <text x="706" y="416" font-family="'Courier New', Courier, monospace" font-size="10" fill="#fbbf24">15/18</text>
+
+  <!-- Overlap annotation -->
+  <text x="600" y="446" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#64748b" text-anchor="middle" font-style="italic">9 defects fixed by both · no overlap in missed sets</text>
+
+  <!-- Stats summary row -->
+  <rect x="295" y="460" width="630" height="70" rx="8" fill="#0f172a" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Run A stats summary -->
+  <text x="430" y="483" font-family="'Courier New', Courier, monospace" font-size="10" fill="#a78bfa" text-anchor="middle" letter-spacing="1">RUN A BREAKDOWN</text>
+  <text x="360" y="502" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#10b981" text-anchor="middle">13</text>
+  <text x="360" y="516" font-family="'Courier New', Courier, monospace" font-size="9" fill="#64748b" text-anchor="middle">FIXED</text>
+  <text x="415" y="502" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#f59e0b" text-anchor="middle">2</text>
+  <text x="415" y="516" font-family="'Courier New', Courier, monospace" font-size="9" fill="#64748b" text-anchor="middle">PARTIAL</text>
+  <text x="470" y="502" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#ef4444" text-anchor="middle">3</text>
+  <text x="470" y="516" font-family="'Courier New', Courier, monospace" font-size="9" fill="#64748b" text-anchor="middle">MISSED</text>
+
+  <!-- Divider between summaries -->
+  <line x1="560" y1="465" x2="560" y2="525" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- Run B stats summary -->
+  <text x="735" y="483" font-family="'Courier New', Courier, monospace" font-size="10" fill="#fbbf24" text-anchor="middle" letter-spacing="1">RUN B BREAKDOWN</text>
+  <text x="640" y="502" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#10b981" text-anchor="middle">15</text>
+  <text x="640" y="516" font-family="'Courier New', Courier, monospace" font-size="9" fill="#64748b" text-anchor="middle">FIXED</text>
+  <text x="700" y="502" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#f59e0b" text-anchor="middle">0</text>
+  <text x="700" y="516" font-family="'Courier New', Courier, monospace" font-size="9" fill="#64748b" text-anchor="middle">PARTIAL</text>
+  <text x="760" y="502" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#ef4444" text-anchor="middle">3</text>
+  <text x="760" y="516" font-family="'Courier New', Courier, monospace" font-size="9" fill="#64748b" text-anchor="middle">MISSED</text>
+
+  <!-- Legend below grid -->
+  <text x="600" y="558" font-family="'Courier New', Courier, monospace" font-size="10" fill="#475569" text-anchor="middle" letter-spacing="2">LEGEND</text>
+
+  <!-- Green legend -->
+  <rect x="390" y="566" width="14" height="14" rx="3" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="1.5"/>
+  <text x="410" y="578" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#10b981">Both fixed (9)</text>
+
+  <!-- Amber legend -->
+  <rect x="510" y="566" width="14" height="14" rx="3" fill="#d97706" fill-opacity="0.3" stroke="#d97706" stroke-width="1.5"/>
+  <text x="530" y="578" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#d97706">B wins (6)</text>
+
+  <!-- Purple legend -->
+  <rect x="620" y="566" width="14" height="14" rx="3" fill="#7c3aed" fill-opacity="0.3" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="640" y="578" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#a78bfa">A wins (3)</text>
+
+  <!-- ===================== RIGHT PANEL (Run B) ===================== -->
+  <rect x="940" y="90" width="240" height="520" rx="12" fill="url(#rightPanelGrad)" stroke="#d97706" stroke-width="1.5" stroke-opacity="0.7"/>
+  <!-- Top accent strip -->
+  <rect x="940" y="90" width="240" height="4" rx="2" fill="#d97706" opacity="0.9"/>
+
+  <!-- Run B label -->
+  <text x="1060" y="122" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="#fbbf24" text-anchor="middle" letter-spacing="2">RUN B</text>
+
+  <!-- Claude Code + Neo MCP subtitle -->
+  <text x="1060" y="142" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#fcd34d" text-anchor="middle">Claude Code + Neo MCP</text>
+
+  <!-- Big score "15" with amber glow -->
+  <text x="1035" y="240" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="90" font-weight="800" fill="#fbbf24" text-anchor="middle" filter="url(#amberGlow)">15</text>
+
+  <!-- /18 -->
+  <text x="1102" y="238" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#92400e" text-anchor="middle">/18</text>
+
+  <!-- Divider -->
+  <line x1="958" y1="260" x2="1162" y2="260" stroke="#d97706" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Stats breakdown -->
+  <!-- FIXED -->
+  <rect x="955" y="272" width="6" height="18" rx="3" fill="#10b981"/>
+  <text x="970" y="286" font-family="'Courier New', Courier, monospace" font-size="11" fill="#94a3b8" letter-spacing="1">FIXED</text>
+  <text x="1158" y="286" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="700" fill="#10b981" text-anchor="end">15</text>
+
+  <!-- PARTIAL -->
+  <rect x="955" y="300" width="6" height="18" rx="3" fill="#f59e0b"/>
+  <text x="970" y="314" font-family="'Courier New', Courier, monospace" font-size="11" fill="#94a3b8" letter-spacing="1">PARTIAL</text>
+  <text x="1158" y="314" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="700" fill="#f59e0b" text-anchor="end">0</text>
+
+  <!-- MISSED -->
+  <rect x="955" y="328" width="6" height="18" rx="3" fill="#ef4444"/>
+  <text x="970" y="342" font-family="'Courier New', Courier, monospace" font-size="11" fill="#94a3b8" letter-spacing="1">MISSED</text>
+  <text x="1158" y="342" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="700" fill="#ef4444" text-anchor="end">3</text>
+
+  <!-- Divider 2 -->
+  <line x1="958" y1="362" x2="1162" y2="362" stroke="#d97706" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Missed label -->
+  <text x="955" y="383" font-family="'Courier New', Courier, monospace" font-size="10" fill="#94a3b8" letter-spacing="1">MISSED:</text>
+  <text x="955" y="401" font-family="'Courier New', Courier, monospace" font-size="13" font-weight="700" fill="#f87171">D11 · D12 · D18</text>
+
+  <!-- Unique wins label -->
+  <text x="955" y="432" font-family="'Courier New', Courier, monospace" font-size="10" fill="#94a3b8" letter-spacing="1">UNIQUE WINS:</text>
+  <text x="955" y="450" font-family="'Courier New', Courier, monospace" font-size="11" font-weight="700" fill="#fbbf24">D6,D7,D8,D13,D14,D15</text>
+
+  <!-- Bottom note -->
+  <text x="955" y="490" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#d97706" font-style="italic">15 fixed</text>
+  <text x="1000" y="490" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#92400e" font-style="italic"> · 0 partial · 3 missed</text>
+
+  <!-- ===================== BOTTOM QUOTE BOX ===================== -->
+  <rect x="20" y="650" width="1160" height="100" rx="8" fill="url(#quoteGrad)" stroke="#4c1d95" stroke-width="1" stroke-opacity="0.6"/>
+
+  <!-- Decorative quote marks -->
+  <text x="38" y="700" font-family="Georgia, 'Times New Roman', serif" font-size="60" fill="#7c3aed" fill-opacity="0.4" line-height="1">"</text>
+
+  <!-- Quote text -->
+  <text x="600" y="691" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="500" fill="white" text-anchor="middle" font-style="italic">The missed sets don't overlap at all.</text>
+  <text x="600" y="716" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="500" fill="#c4b5fd" text-anchor="middle" font-style="italic">Same model — different cognitive mode.</text>
+
+  <!-- Closing quote mark -->
+  <text x="1148" y="730" font-family="Georgia, 'Times New Roman', serif" font-size="60" fill="#7c3aed" fill-opacity="0.4">"</text>
+
+  <!-- Subtle bottom branding line -->
+  <line x1="20" y1="755" x2="1180" y2="755" stroke="#1e3a5f" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="600" y="770" font-family="'Courier New', Courier, monospace" font-size="9" fill="#334155" text-anchor="middle" letter-spacing="1">CLAUDE CODE · NEO MCP · EXPERIMENT #1 · 18 DEFECTS</text>
+</svg>
