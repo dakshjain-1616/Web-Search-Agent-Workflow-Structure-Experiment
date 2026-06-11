@@ -4,7 +4,7 @@
 
 ---
 
-This is part of a series of controlled experiments on how workflow structure changes what AI coding agents produce. The question this post asks is narrow: does the *structure* of a workflow change fix quality, even when the underlying model is identical throughout? This is about which bugs get found, which get missed, and why — and the answer points at something specific about how written specs change what an agent is forced to enumerate.
+The question is narrow: does the *structure* of a workflow change fix quality when the underlying model is identical throughout? The answer is yes, and the mechanism is specific — a written spec changes what an agent is forced to enumerate, and that changes what gets fixed.
 
 ---
 
@@ -52,7 +52,7 @@ The plan's "Research Summary" section captures what happened from Neo's perspect
 
 ---
 
-## The Scoreboard
+## What Each Missed Tells You Everything
 
 ![Defect scoreboard: 13/18 vs 15/18 across 18 catalogued defects](infographic-scoreboard.svg)
 
@@ -77,30 +77,21 @@ The plan's "Research Summary" section captures what happened from Neo's perspect
 | D17 No missing-field guard | Error handling | Fixed | Fixed |
 | D18 No CLI arg validation | UX | Fixed | **Missed** |
 
-**Run A: 13 fixed, 2 partial, 3 missed.**
-**Run B: 15 fixed, 0 partial, 3 missed.**
+**Run A: 13 fixed, 2 partial, 3 missed. Run B: 15 fixed, 0 partial, 3 missed. The missed sets don't overlap at all.**
 
-The missed sets don't overlap at all.
+This non-overlap is the diagnostic signal. Each workflow is blind to a different class of problem.
 
----
-
-## The Pattern in What Each Missed
-
-![What each workflow is blind to: D7/D8/D15 invisible to static reading vs D11/D12/D18 judgment calls not in spec](infographic-insight.svg)
-
-This is the part worth dwelling on.
-
-**Run A missed D7, D8, and D15.** Look at exactly what those are:
+**Run A missed D7, D8, and D15** — look at exactly what those are:
 
 - **D7** — no `timeout=` on either HTTP call. The baseline hangs forever on a slow API.
 - **D8** — no retry logic. A single 429 or connection reset kills the process.
 - **D15** — no `requests.Session`. Every call opens a fresh TCP+TLS connection.
 
-These three defects have one thing in common: **they are invisible to static code reading.** Nothing in the source file tells you that a call without a timeout will block. You learn that by running the code under load, by being paged, or by reading API documentation for rate-limit behavior. Code-reading diagnosis stops at the boundary of what the text can show you.
+These three defects have one thing in common: **they are invisible to static code reading.** Nothing in the source file tells you that a call without a timeout will block. You learn that by running the code under load, by being paged, or by reading API documentation for rate-limit behavior.
 
 > *Solo Claude Code fixed exactly the defects visible by reading the source. It missed every defect that only becomes visible at runtime.*
 
-**Run B missed D11, D12, and D18.** These are different in kind:
+**Run B missed D11, D12, and D18** — these are different in kind:
 
 - **D11** — no system prompt. The baseline sends only a user-role message; LLM output tone and format are undefined.
 - **D12** — URL/link field dropped. The LLM's context has no source attribution.
@@ -112,11 +103,15 @@ I want to be direct about this: **solo's wins on D11 and D12 are genuine diagnos
 
 ---
 
-## The Sharpest Version of the Finding
+## Why Writing a Spec Changes What Gets Enumerated
 
-Here's the part I keep coming back to.
+![What each workflow is blind to: D7/D8/D15 invisible to static reading vs D11/D12/D18 judgment calls not in spec](infographic-insight.svg)
+
+Here's the part worth sitting with.
 
 The model was the same in both runs. Claude Code solo and Claude Code as orchestrator are running the same underlying model. And yet: Claude Code solo missed D7, D8, and D15 when doing the work itself — and then Claude Code as orchestrator put all three explicitly in the spec it wrote for Neo.
+
+Neo's plan.md records the received requirements at lines 16-17: "Use `requests.Session` with 10s timeout, add tenacity retry" — the surviving trace of what the orchestrator's spec contained; the spec itself was not preserved as a separate artifact. Once written into the plan, D7, D8, and D15 became obligatory line items Neo was required to check off. They got captured not because Neo is smarter, but because the act of writing a spec forces explicit enumeration. You can't write "add retry logic" without committing to what retry logic means.
 
 Writing a spec for someone else forces you to enumerate requirements you'd otherwise skip over in your own implementation. When you're doing the work yourself, you can stop when the visible bugs are gone. When you're writing instructions for another agent, you have to be explicit about what "done" means — and that act of articulation surfaces the runtime-behavior requirements that code reading alone doesn't reach.
 
@@ -124,9 +119,9 @@ Writing a spec for someone else forces you to enumerate requirements you'd other
 
 ---
 
-## The Two Bugs the Orchestrated Run Shipped
+## Broader Coverage Is Not Correct Execution
 
-Broader coverage is not the same as correct execution. Run B shipped two bugs worth naming clearly.
+Run B fixed more defects. Run B also shipped two bugs worth naming clearly.
 
 **Bug 1: retry logic that doesn't retry rate limits.**
 
@@ -178,25 +173,17 @@ human prompt
     → Neo (execution) → 20-file implementation
 ```
 
-The spec is where the coverage difference was created. Neo's plan.md records the received requirements at lines 16-17: "Use `requests.Session` with 10s timeout, add tenacity retry" — the surviving trace of what the orchestrator's spec contained; the spec itself was not preserved as a separate artifact. Once written into the plan, D7, D8, and D15 became obligatory line items Neo was required to check off. They got captured not because Neo is smarter, but because the act of writing a spec forces explicit enumeration. You can't write "add retry logic" without committing to what retry logic means.
+The spec is where the coverage difference was created. Items not in the spec don't get addressed. System prompt quality, URL attribution, CLI defensiveness — all judgment calls that fell through the gap because they weren't written down.
 
 > *Orchestration's value is not a smarter model. It's that the workflow converts a vague task into spec → plan → execution — and that structure has measurably different coverage characteristics than a single reactive pass.*
 
-The cost is rigidity. Items not in the spec don't get addressed. System prompt quality, URL attribution, CLI defensiveness — all judgment calls that fell through the gap because they weren't written down.
-
 ---
 
-## The Missing Step
+## The Missing Verification Pass
 
 Neither run measured anything before changing it. The benchmark harness is written (`benchmark.py`) and dry-validates cleanly against all three paths, but it was not run — API keys are required and no numbers are fabricated here. Whether connection pooling and timeouts materially change latency in this agent's workload is an open question.
 
 More importantly: neither run tested against live failure conditions. The 429 retry bug exists because no test hit a real rate-limited API. The mutable cache bug exists because no test called `get_all()` and then mutated what came back.
-
-The workflow that would close both gaps: orchestrated pass for systematic spec coverage, then an adversarial verification pass against live failure behavior. The first phase is what Run B demonstrates. The second phase is what neither run ran.
-
----
-
-## The Ideal Loop
 
 A solo diagnostic pass produces genuine insight — D11, D12, D18 — that spec-following missed. An orchestrated pipeline with a written spec ensures runtime requirements get enumerated and implemented. Neither is complete without a verification pass that actually exercises the failure paths.
 
