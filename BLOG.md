@@ -4,9 +4,7 @@
 
 ---
 
-This is part of a series of controlled experiments on how workflow structure changes what AI coding agents produce. The question this post asks is narrow: does the *structure* of a workflow change fix quality, even when the underlying model is identical throughout?
-
-[Gaurav Vij has written the cost analysis](https://medium.com/@gauravvij/claude-code-an-ai-agent-cut-my-ai-engineering-costs-by-62-claude-code-alone-couldnt-840c6e8502e9) for orchestrated vs solo runs. This is not that post. This is about which bugs get found, which get missed, and why — and the answer points at something specific about how written specs change what an agent is forced to enumerate.
+This is part of a series of controlled experiments on how workflow structure changes what AI coding agents produce. The question this post asks is narrow: does the *structure* of a workflow change fix quality, even when the underlying model is identical throughout? This is about which bugs get found, which get missed, and why — and the answer points at something specific about how written specs change what an agent is forced to enumerate.
 
 ---
 
